@@ -5,7 +5,7 @@ const Game = ({ name }) => {
   const [time, setTime] = useState(0);
   const [message, setMessage] = useState("");
   useEffect(() => {
-    const ws = new WebSocket(`ws://localhost:8080/ws?name=${name}`);
+    const ws = new WebSocket(`wss://density-assignment.herokuapp.com/ws?name=${name}`);
     sock.current = ws;
     ws.onmessage = function (event) {
       const data = JSON.parse(event.data);
@@ -33,8 +33,9 @@ const Game = ({ name }) => {
   return (
     <>
       <div>Game</div>
-      <span>{time}</span>
-      <span>{message}</span>
+      <span>{time}</span><br/>
+      <span>{message}</span><br/>
+      <span>Up Bet is selected by default</span>
       <div>
         <button
           onClick={() => {
